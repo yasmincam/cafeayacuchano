@@ -1,0 +1,66 @@
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: #140E0B;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  
+  /* Desvanecimiento suave únicamente al ocultarse */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Al activarse: APARECE DE INMEDIATO a 0ms sin retraso visual */
+.loader-overlay.is-active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transition: none !important;
+}
+
+@keyframes loader-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes loader-slide {
+  0% {
+    left: -40%;
+    width: 30%;
+  }
+  50% {
+    left: 30%;
+    width: 60%;
+  }
+  100% {
+    left: 100%;
+    width: 30%;
+  }
+}
+
+.loader-spinning-ring {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 60deg,
+    #8E5836 120deg,
+    #BA8353 180deg,
+    #FFF8F1 220deg,
+    #D7A779 260deg,
+    transparent 320deg,
+    transparent 360deg
+  );
+  animation: loader-spin 2s linear infinite;
+  pointer-events: none;
+}
+
+.loader-bar-slide {
+  animation: loader-slide 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+

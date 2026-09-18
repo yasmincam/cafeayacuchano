@@ -1,0 +1,33 @@
+<section id="fidelidad" class="my-16 py-8">
+  <div class="text-center mb-10">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#BA8353]/15 text-[#D7A779] text-xs font-['Outfit'] font-black tracking-widest uppercase mb-3 border border-[#D7A779]/30">
+      <svg class="w-3.5 h-3.5 text-[#D7A779]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/>
+      </svg>
+      <span>CLUB DE BENEFICIOS CAFÉ AYACUCHANO</span>
+    </div>
+    <h2 class="font-['Bebas_Neue'] text-4xl sm:text-5xl uppercase text-white tracking-wider">
+      NIVELES DE SOCIO <span class="cafe-gradient-text">Y BENEFICIOS EXCLUSIVOS</span>
+    </h2>
+    <p class="text-xs text-[#D7A779]/85 mt-2 max-w-lg mx-auto font-normal">
+      Acumula visitas en nuestra cafetería y órdenes registradas para desbloquear descuentos permanentes en grano y barra.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+    @for (t of tiers; track t.level) {
+      <div class="glass-panel glass-panel-hover p-5 rounded-2xl border border-[#D7A779]/20 flex flex-col justify-between text-center relative group">
+        <div class="w-11 h-11 mx-auto rounded-full flex items-center justify-center font-['Bebas_Neue'] text-xl font-bold text-white mb-3 shadow-lg"
+             [style.background-color]="t.badgeColor + '25'"
+             [style.border]="'2px solid ' + t.badgeColor">
+          {{ t.level }}
+        </div>
+        <h4 class="font-['Outfit'] font-black text-sm text-[#FFF8F1] uppercase tracking-wider mb-1">{{ t.name }}</h4>
+        <div class="text-[11px] text-[#D7A779]/80 mb-3 font-medium">{{ t.visits }}</div>
+        <div class="px-3 py-1.5 rounded-xl bg-[#BA8353]/15 font-['Outfit'] font-black text-sm text-[#D7A779] border border-[#BA8353]/30 tracking-wider">
+          {{ t.discount }}
+        </div>
+      </div>
+    }
+  </div>
+</section>

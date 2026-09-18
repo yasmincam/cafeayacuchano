@@ -1,0 +1,37 @@
+<div class="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3 pointer-events-auto select-none">
+  <!-- Speech Bubble in Pastel Coffee Colors -->
+  @if (isExpanded && moka.visible()) {
+    <div class="max-w-xs md:max-w-sm glass-panel p-4 rounded-2xl border border-[#D2A375]/40 shadow-xl shadow-black/60 animate-fade-in relative">
+      <div class="flex items-center justify-between gap-2 pb-2 mb-2 border-b border-white/10">
+        <span class="text-[10px] font-['Outfit'] font-black uppercase tracking-[0.2em] text-[#D2A375]">
+          MOKA <span class="text-white">//</span> BARISTA AYACUCHANO
+        </span>
+        <button (click)="toggleExpand()" class="text-stone-400 hover:text-white transition-colors cursor-pointer">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <p class="text-xs text-[#F5EBE1] leading-relaxed font-sans font-medium">
+        "{{ moka.currentText() }}"
+      </p>
+
+      <div class="mt-2 text-[10px] text-[#D2A375] font-['Outfit'] font-bold tracking-wider flex items-center gap-1 cursor-pointer" (click)="interact()">
+        <span>✦ CLIC PARA RECOMENDACIONES DE CAFÉ</span>
+      </div>
+    </div>
+  }
+
+  <!-- Mascot Avatar Button with Pastel Coffee Ring -->
+  <button (click)="interact()" 
+          title="Hablar con Barista Moka"
+          class="relative w-16 h-16 md:w-18 md:h-18 rounded-full p-[3px] bg-gradient-to-tr from-[#B48559] via-[#D2A375] to-[#165B37] shadow-2xl shadow-black/80 hover:scale-105 active:scale-95 transition-transform duration-300 group cursor-pointer">
+    <div class="w-full h-full rounded-full overflow-hidden bg-[#18120F] flex items-center justify-center border-2 border-[#D2A375]/30">
+      <img [src]="'/assets/barista/' + moka.currentImage()" 
+           alt="Moka Barista" 
+           class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300">
+    </div>
+    <span class="absolute -bottom-1 -right-1 px-2 py-0.5 rounded-full bg-[#B48559] text-[8px] font-['Outfit'] font-black text-white border border-[#D2A375]/40 uppercase tracking-widest">
+      BARISTA
+    </span>
+  </button>
+</div>

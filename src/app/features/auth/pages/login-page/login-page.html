@@ -1,0 +1,40 @@
+<div class="max-w-4xl mx-auto px-4 py-12 flex items-center justify-center min-h-[calc(100vh-200px)]">
+  <div class="w-full grid md:grid-cols-2 gap-10 items-center">
+    <!-- Left Hero Card in Pastel Coffee Theme -->
+    <div class="hidden md:flex flex-col gap-5 glass-panel p-8 rounded-3xl border border-[#D2A375]/20 relative overflow-hidden">
+      <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-[#165B37] p-0.5 bg-[#18120F]">
+        <img src="/assets/museo/logo_cafeteria.png" alt="Café Ayacuchano" class="w-full h-full object-contain" />
+      </div>
+
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B48559]/20 text-[#D2A375] text-xs font-['Outfit'] font-black tracking-widest uppercase w-fit border border-[#D2A375]/30">
+        CAFÉ AYACUCHANO // ACCESO
+      </div>
+
+      <h1 class="text-4xl font-['Bebas_Neue'] uppercase text-[#F5EBE1] leading-tight tracking-wider">
+        DISFRUTA DE NUESTRO <br><span class="pastel-coffee-text">CAFÉ DE ESPECIALIDAD</span>
+      </h1>
+
+      <p class="text-xs text-[#D2A375] leading-relaxed">
+        Inicia sesión para gestionar tus pedidos de café en grano del VRAEM, personalizar tus moliendas y reservar para recojo rápido en barra.
+      </p>
+
+      <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3">
+        <img src="/assets/barista/barista_feliz.png" alt="Moka" class="w-12 h-12 rounded-full object-cover bg-black/40 border border-[#D2A375]/40" />
+        <div class="text-xs">
+          <div class="font-bold text-[#F5EBE1]">Moka Barista</div>
+          <div class="text-[11px] text-[#D2A375]/80">Tus datos están protegidos en nuestro sistema.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Form Card -->
+    <div class="glass-panel p-8 rounded-3xl border border-[#D2A375]/30 shadow-2xl shadow-black/80">
+      <div class="mb-6">
+        <div class="font-['Bebas_Neue'] text-3xl tracking-wider text-[#F5EBE1]">INICIAR SESIÓN</div>
+        <p class="text-xs text-[#D2A375]/80">Ingresa tus credenciales para continuar</p>
+      </div>
+
+      <app-login-form (loginRequest)="handleLogin($event)"></app-login-form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="space-y-8">
+  <!-- Hero Section in Pastel Coffee Aesthetics -->
+  <app-hero-banner></app-hero-banner>
+
+
+  <!-- Coffee Catalog Section with Scroll Reveal -->
+  <section id="catalogo" appScrollReveal class="max-w-7xl mx-auto px-4 md:px-8 pt-4">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 border-b border-[#D7A779]/20 pb-6">
+      <div>
+        <h2 class="font-['Outfit'] font-black text-2xl md:text-3xl text-[#FFF8F1] uppercase tracking-wide">
+          Nuestra Carta de <span class="cafe-gradient-text">Café & Especialidades</span>
+        </h2>
+      </div>
+
+      <!-- Search Input with Palette Styling -->
+      <div class="w-full md:w-72 relative">
+        <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#D7A779]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input [ngModel]="searchQuery()" 
+               (ngModelChange)="searchQuery.set($event)"
+               placeholder="Buscar café, notas, variedad..." 
+               class="w-full pl-9 pr-4 py-2.5 rounded-xl glass-panel text-xs text-[#FFF8F1] placeholder-stone-400 border border-[#D7A779]/30 focus:border-[#BA8353] focus:ring-1 focus:ring-[#BA8353]/50 outline-none transition-all" />
+      </div>
+    </div>
+
+    <!-- Category Filter Bar -->
+    <app-category-filter></app-category-filter>
+
+    <!-- Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-6">
+      @for (prod of displayedProducts(); track prod.id) {
+        <app-product-card [product]="prod"></app-product-card>
+      }
+    </div>
+
+    @if (displayedProducts().length === 0) {
+      <div class="text-center py-16 glass-panel rounded-2xl border border-white/5 my-6">
+        <p class="text-sm text-gray-300 font-semibold">No se encontraron cafés con esa búsqueda.</p>
+        <p class="text-xs text-gray-500 mt-1">Prueba con otra nota de cata, variedad o categoría.</p>
+      </div>
+    }
+  </section>
+
+
+  <!-- Coffee Origin & Roastery Story with Scroll Reveal -->
+  <section appScrollReveal class="max-w-7xl mx-auto px-4 md:px-8">
+    <app-oasis-showcase></app-oasis-showcase>
+  </section>
+</div>

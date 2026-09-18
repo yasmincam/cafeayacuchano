@@ -1,0 +1,84 @@
+@if (cart.isOpen()) {
+  <div class="fixed inset-0 z-50 overflow-hidden">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" (click)="close()"></div>
+    <aside class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="w-screen max-w-md bg-[#140E0B] border-l border-[#D7A779]/25 shadow-2xl flex flex-col">
+        <!-- Header -->
+        <div class="p-5 border-b border-[#D7A779]/20 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="font-['Bebas_Neue'] text-2xl tracking-wider text-[#FFF8F1]">TU PEDIDO // RESERVA</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#BA8353] text-white text-xs font-bold">{{ cart.totalCount() }}</span>
+          </div>
+          <button (click)="close()" class="text-[#D7A779] hover:text-white p-1 cursor-pointer">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <!-- Success View -->
+        @if (orderSuccessId(); as orderId) {
+          <div class="p-8 text-center flex flex-col items-center justify-center my-auto">
+            <div class="w-16 h-16 rounded-full bg-[#BA8353]/20 text-[#D7A779] flex items-center justify-center mb-4 border border-[#D7A779]/40">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3 class="font-['Outfit'] font-black text-xl text-white uppercase tracking-wider mb-2">¡Pedido Confirmado!</h3>
+            <p class="text-xs text-stone-300 mb-2">Código para recojo en nuestra tostaduría de Ayacucho:</p>
+            <div class="px-4 py-2 rounded-xl bg-[#1F1510] border border-[#D7A779] text-[#D7A779] font-mono text-lg font-bold mb-4">{{ orderId }}</div>
+            <p class="text-xs text-stone-300 leading-relaxed max-w-xs mb-6">Prepararemos tus cafés con el mayor cuidado. Presenta este código al llegar.</p>
+            <button (click)="close()" class="px-6 py-2.5 rounded-xl cafe-btn-primary text-xs font-bold tracking-wider cursor-pointer">ENTENDIDO</button>
+          </div>
+        } @else {
+          <!-- Items List -->
+          <div class="flex-1 overflow-y-auto p-5 space-y-3">
+            @if (cart.items().length === 0) {
+              <div class="py-16 text-center text-stone-400">
+                <svg class="w-10 h-10 mx-auto text-[#D7A779] mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
+                <p class="text-sm font-semibold text-[#FFF8F1]">Tu pedido está vacío.</p>
+                <p class="text-xs text-stone-400 mt-1">Explora nuestra carta de cafés y especialidades.</p>
+              </div>
+            } @else {
+              @for (item of cart.items(); track item.id + (item.variant || '')) {
+                <div class="glass-panel p-3 rounded-xl flex items-center gap-3 border border-[#D7A779]/15">
+                  <img [src]="item.image" [alt]="item.name" class="w-12 h-12 object-cover rounded-lg bg-black/50" />
+                  <div class="flex-1 min-w-0">
+                    <h4 class="text-xs font-semibold text-white truncate">{{ item.name }}</h4>
+                    <span class="text-[10px] text-[#D7A779]">{{ item.variant || 'Estándar' }}</span>
+                    <div class="text-xs font-bold text-[#FFF8F1]">S/. {{ item.price.toFixed(2) }}</div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs font-bold px-2 py-0.5 rounded bg-white/5 text-white">x{{ item.quantity }}</span>
+                    <button (click)="cart.removeItem(item.id, item.variant)" class="text-stone-400 hover:text-red-400 cursor-pointer">
+                      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    </button>
+                  </div>
+                </div>
+              }
+              <div class="pt-2">
+                <div class="flex gap-2">
+                  <input [(ngModel)]="couponInput" placeholder="CUPÓN (ej. MOKA-25)" class="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-stone-500 uppercase focus:border-[#D7A779] outline-none" />
+                  <button (click)="applyCoupon()" class="px-3 py-2 rounded-xl bg-[#BA8353] hover:bg-[#8E5836] text-xs font-semibold text-white cursor-pointer transition-colors">Aplicar</button>
+                </div>
+                @if (couponMessage(); as msg) { <p class="text-[11px] mt-1 text-[#D7A779]">{{ msg }}</p> }
+              </div>
+            }
+          </div>
+
+          <!-- Totals -->
+          @if (cart.items().length > 0) {
+            <div class="p-5 border-t border-[#D7A779]/20 bg-[#140E0B] space-y-2">
+              <div class="flex justify-between text-xs text-stone-300"><span>Subtotal</span><span>S/. {{ cart.subtotal().toFixed(2) }}</span></div>
+              @if (cart.discountAmount() > 0) {
+                <div class="flex justify-between text-xs text-[#D7A779] font-semibold"><span>Descuento</span><span>- S/. {{ cart.discountAmount().toFixed(2) }}</span></div>
+              }
+              <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-white/10">
+                <span>Total a Pagar</span><span class="text-base text-[#D7A779] font-black">S/. {{ cart.total().toFixed(2) }}</span>
+              </div>
+              <button (click)="confirmReservation()" class="w-full py-3 rounded-xl cafe-btn-primary text-xs font-['Outfit'] font-black uppercase tracking-wider shadow-lg transition-all cursor-pointer border border-[#FFF8F1]/30">
+                Confirmar Pedido para Recojo en Tienda
+              </button>
+            </div>
+          }
+        }
+      </div>
+    </aside>
+  </div>
+}

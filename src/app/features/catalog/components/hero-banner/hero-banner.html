@@ -1,0 +1,39 @@
+<section class="relative pt-8 pb-16 px-4 md:px-8 text-center">
+  <!-- Resplandor ambiental de café totalmente difuminado y continuo (sin cortes rectangulares) -->
+  <div class="absolute inset-0 pointer-events-none -z-10"
+       style="background: radial-gradient(ellipse 70% 55% at 50% 30%, rgba(215, 167, 121, 0.14) 0%, rgba(186, 131, 83, 0.06) 45%, transparent 75%);"></div>
+
+  <div class="max-w-5xl mx-auto relative z-10">
+    <!-- Official Emblem / Logo with Coffee Glow Rim -->
+    <div class="inline-block mb-6 relative group">
+      <div class="absolute -inset-3 rounded-full bg-gradient-to-r from-[#D7A779] via-[#BA8353] to-[#8E5836] opacity-50 blur-xl group-hover:opacity-80 transition duration-500 pointer-events-none"></div>
+      <div class="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-[#D7A779]/50 bg-[#140E0B] p-1.5 shadow-2xl group-hover:scale-105 transition-transform duration-300">
+        <img src="/assets/museo/logo_cafeteria.png" alt="Café Ayacuchano" class="w-full h-full object-contain" />
+      </div>
+    </div>
+
+    <!-- Title in Coffee Gradient -->
+    <h1 class="font-['Bebas_Neue'] text-6xl sm:text-8xl md:text-9xl tracking-wider uppercase text-[#FFF8F1] leading-none mb-3">
+      CAFÉ <span class="cafe-gradient-text">AYACUCHANO</span>
+    </h1>
+
+    <p class="max-w-2xl mx-auto text-sm md:text-base text-[#D7A779]/90 font-normal leading-relaxed mb-8">
+      Granos de estricta altura cultivados en el valle del VRAEM y tostados artesanalmente en Ayacucho. Intensidad, cuerpo y aroma puro en cada extracción.
+    </p>
+
+    <!-- Action Buttons with Palette Colors & Smooth Hover Effects -->
+    <div class="flex flex-wrap items-center justify-center gap-4 mb-4">
+      <button (click)="scrollToSection('catalogo')" 
+              class="px-8 py-3.5 rounded-full cafe-btn-primary active:scale-95 text-xs font-['Outfit'] font-black tracking-[0.15em] uppercase text-[#140E0B] shadow-xl transition-all cursor-pointer flex items-center gap-2 border border-white/40 group">
+        <svg class="w-4 h-4 text-[#140E0B] group-hover:rotate-12 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
+        <span>EXPLORAR LA CARTA</span>
+      </button>
+
+      <button (click)="scrollToSection('origen')" 
+              class="px-7 py-3.5 rounded-full bg-white/5 hover:bg-[#BA8353]/20 active:scale-95 text-xs font-['Outfit'] font-bold tracking-[0.15em] uppercase text-[#D7A779] hover:text-[#FFF8F1] border border-[#D7A779]/30 hover:border-[#D7A779] transition-all cursor-pointer">
+        ORIGEN DEL CAFÉ →
+      </button>
+    </div>
+  </div>
+</section>
+

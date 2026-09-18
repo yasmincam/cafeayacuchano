@@ -1,0 +1,90 @@
+<header class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-5xl header-rotating-border transition-all duration-300">
+  <div class="relative z-10 w-full px-4 sm:px-6 py-2.5 flex items-center justify-between">
+    <!-- Brand Logo & Title -->
+    <a routerLink="/" class="flex items-center gap-3 cursor-pointer group shrink-0">
+      <div class="relative w-9 h-9 rounded-full overflow-hidden border border-[#D7A779]/50 bg-[#140E0B] p-0.5 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 shadow-md">
+        <div class="absolute inset-0 bg-gradient-to-tr from-[#8E5836]/40 to-transparent pointer-events-none"></div>
+        <img src="/assets/museo/logo_cafeteria.png" alt="Café Ayacuchano" class="w-full h-full object-contain relative z-10" />
+      </div>
+      <span class="font-['Bebas_Neue'] tracking-wider text-xl sm:text-2xl text-[#FFF8F1] uppercase group-hover:text-[#D7A779] transition-colors leading-none">
+        CAFÉ <span class="cafe-gradient-text">AYACUCHANO</span>
+      </span>
+    </a>
+
+    <!-- Centered Interactive Navigation Links (Desktop) -->
+    <nav class="hidden md:flex items-center gap-1.5 text-xs font-['Outfit'] font-bold tracking-wider uppercase text-[#D7A779]/90">
+      <a routerLink="/" fragment="catalogo" class="px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all cursor-pointer">
+        La Carta
+      </a>
+      <a routerLink="/" fragment="origen" class="px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all cursor-pointer">
+        Origen VRAEM
+      </a>
+      <a routerLink="/login" class="px-4 py-1.5 rounded-full hover:text-[#FFF8F1] hover:bg-[#BA8353]/30 transition-all cursor-pointer">
+        Acceso
+      </a>
+    </nav>
+
+    <!-- Right Actions: Fun Animated Coffee Pill Button + 2-Line Menu -->
+    <div class="flex items-center gap-3">
+      <button (click)="openCart()" 
+              class="px-4 sm:px-5 py-2 rounded-full cafe-btn-primary text-xs font-['Outfit'] font-black tracking-wider uppercase flex items-center gap-2 cursor-pointer border border-[#FFF8F1]/30 group">
+        <svg class="w-3.5 h-3.5 text-[#140E0B] group-hover:rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/>
+        </svg>
+        <span class="group-hover:translate-x-0.5 transition-transform">PEDIR CAFÉ</span>
+        @if (cart.totalCount() > 0) {
+          <span class="w-4 h-4 rounded-full bg-[#140E0B] text-[#FFF8F1] text-[10px] font-black flex items-center justify-center animate-bounce shadow-md">
+            {{ cart.totalCount() }}
+          </span>
+        }
+      </button>
+
+      <button (click)="toggleMenu()" 
+              title="Menú"
+              class="w-8 h-8 flex flex-col justify-center items-center gap-1.5 cursor-pointer text-[#D7A779] hover:text-white transition-colors p-1 group">
+        <span class="w-5 h-[2px] bg-[#D7A779] group-hover:w-6 group-hover:bg-[#FFF8F1] transition-all rounded-full"></span>
+        <span class="w-5 h-[2px] bg-[#D7A779] group-hover:w-6 group-hover:bg-[#FFF8F1] transition-all rounded-full"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Slide Dropdown Menu -->
+@if (menuOpen()) {
+  <div class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm" (click)="toggleMenu()">
+    <div class="w-full max-w-xs bg-[#140E0B]/95 backdrop-blur-2xl border-l border-[#D7A779]/30 p-8 flex flex-col justify-between shadow-2xl animate-fade-in" (click)="$event.stopPropagation()">
+      <div>
+        <div class="flex justify-between items-center pb-6 border-b border-[#D7A779]/20 mb-6">
+          <span class="font-['Bebas_Neue'] text-2xl tracking-wider text-[#FFF8F1]">MENÚ CAFÉ AYACUCHANO</span>
+          <button (click)="toggleMenu()" class="text-[#D7A779] hover:text-[#FFF8F1] cursor-pointer p-1">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <nav class="flex flex-col gap-4 font-['Outfit'] font-black text-sm uppercase tracking-widest text-[#F8F1E7]">
+          <a routerLink="/" fragment="catalogo" (click)="toggleMenu()" class="hover:text-[#D7A779] transition-colors flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#D7A779]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/>
+            </svg>
+            <span>La Carta de Café</span>
+          </a>
+          <a routerLink="/" fragment="origen" (click)="toggleMenu()" class="hover:text-[#D7A779] transition-colors flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#D7A779]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L3 7v10l9 5 9-5V7l-9-5z"/>
+            </svg>
+            <span>Origen VRAEM</span>
+          </a>
+          <a routerLink="/login" (click)="toggleMenu()" class="hover:text-[#D7A779] transition-colors flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-[#D7A779]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>Acceso Clientes</span>
+          </a>
+        </nav>
+      </div>
+      <div class="text-[11px] text-[#D7A779]/80 font-['Outfit'] border-t border-[#D7A779]/20 pt-4">
+        Ayacucho, Perú • 2,761 m.s.n.m.<br>
+        <span class="text-stone-400 font-normal">Cultivo de Altura & Barismo Profesional</span>
+      </div>
+    </div>
+  </div>
+}
