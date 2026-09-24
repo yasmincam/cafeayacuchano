@@ -42,7 +42,7 @@
         <svg class="w-3.5 h-3.5 text-[#140E0B] group-hover:rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/>
         </svg>
-        <span class="group-hover:translate-x-0.5 transition-transform">PEDIR CAFÉ</span>
+        <span class="group-hover:translate-x-0.5 transition-transform">ORDENAR PRODUCTO</span>
         @if (cart.totalCount() > 0) {
           <span class="w-4 h-4 rounded-full bg-[#140E0B] text-[#FFF8F1] text-[10px] font-black flex items-center justify-center animate-bounce shadow-md">
             {{ cart.totalCount() }}
@@ -71,13 +71,13 @@
           </button>
         </div>
         <nav class="flex flex-col gap-4 font-['Outfit'] font-black text-sm uppercase tracking-widest text-[#F8F1E7]">
-          <a routerLink="/" fragment="catalogo" (click)="toggleMenu()" class="hover:text-[#D7A779] transition-colors flex items-center gap-2.5">
+          <a routerLink="/" fragment="catalogo" (click)="scrollToSection('catalogo')" (click)="toggleMenu()" class="hover:text-[#D7A779] transition-colors flex items-center gap-2.5">
             <svg class="w-4 h-4 text-[#D7A779]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/>
             </svg>
             <span>La Carta de Café</span>
           </a>
-          <a routerLink="/" fragment="origen" (click)="toggleMenu()" class="hover:text-[#D7A779] transition-colors flex items-center gap-2.5">
+          <a routerLink="/" fragment="origen" (click)="scrollToSection('origen')" (click)="toggleMenu()" class="hover:text-[#D7A779] transition-colors flex items-center gap-2.5">
             <svg class="w-4 h-4 text-[#D7A779]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 2L3 7v10l9 5 9-5V7l-9-5z"/>
             </svg>
