@@ -23,4 +23,9 @@ export class HeaderComponent {
   toggleMenu() {
     this.menuOpen.update(v => !v);
   }
+
+  scrollToSection(id: string) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
 }

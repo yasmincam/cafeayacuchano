@@ -1,6 +1,6 @@
 <header class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-5xl header-rotating-border transition-all duration-300">
   <div class="relative z-10 w-full px-4 sm:px-6 py-2.5 flex items-center justify-between">
-    <!-- Brand Logo & Title -->
+
     <a routerLink="/" class="flex items-center gap-3 cursor-pointer group shrink-0">
       <div class="relative w-9 h-9 rounded-full overflow-hidden border border-[#D7A779]/50 bg-[#140E0B] p-0.5 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 shadow-md">
         <div class="absolute inset-0 bg-gradient-to-tr from-[#8E5836]/40 to-transparent pointer-events-none"></div>
@@ -11,11 +11,15 @@
       </span>
     </a>
 
-    <!-- Centered Interactive Navigation Links (Desktop) -->
     <nav class="hidden md:flex items-center gap-1.5 text-xs font-['Outfit'] font-bold tracking-wider uppercase text-[#D7A779]/90">
-      <a routerLink="/" fragment="catalogo" class="px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all cursor-pointer">
+      <a
+        routerLink="/"
+        (click)="scrollToSection('catalogo')"
+        class="px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+        >
         La Carta
       </a>
+
       <a routerLink="/" fragment="origen" class="px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all cursor-pointer">
         Origen local
       </a>
@@ -24,7 +28,6 @@
       </a>
     </nav>
 
-    <!-- Right Actions: Fun Animated Coffee Pill Button + 2-Line Menu -->
     <div class="flex items-center gap-3">
       <button (click)="openCart()" 
               class="px-4 sm:px-5 py-2 rounded-full cafe-btn-primary text-xs font-['Outfit'] font-black tracking-wider uppercase flex items-center gap-2 cursor-pointer border border-[#FFF8F1]/30 group">
@@ -49,7 +52,6 @@
   </div>
 </header>
 
-<!-- Slide Dropdown Menu -->
 @if (menuOpen()) {
   <div class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm" (click)="toggleMenu()">
     <div class="w-full max-w-xs bg-[#140E0B]/95 backdrop-blur-2xl border-l border-[#D7A779]/30 p-8 flex flex-col justify-between shadow-2xl animate-fade-in" (click)="$event.stopPropagation()">
