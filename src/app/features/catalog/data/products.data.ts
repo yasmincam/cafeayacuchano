@@ -3,7 +3,7 @@ import { Product } from '../models/product.model';
 export const INITIAL_PRODUCTS: Product[] = [
   {
     id: 'c-01',
-    name: 'Café de Especialidad VRAEM 250g',
+    name: 'Café de Especialidad Ayacucho 250g',
     category: 'Café en Grano',
     price: 28.00,
     stock: 50,
@@ -31,9 +31,9 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'c-03',
-    name: 'Espresso Wari Doble Shot',
+    name: 'Café Espresso',
     category: 'Bebidas de Barra',
-    price: 8.50,
+    price: 5.00,
     stock: 100,
     image: '/assets/coffee/espresso.jpg',
     badge: '9 BARES EXTRACCIÓN',
@@ -43,7 +43,7 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'c-04',
-    name: 'Latte Andino con Algarrobina',
+    name: 'Café Latte',
     category: 'Bebidas de Barra',
     price: 11.50,
     stock: 45,
@@ -54,9 +54,9 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'c-05',
-    name: 'Cold Brew Macerado 18 Horas',
+    name: 'Café Helado',
     category: 'Bebidas de Barra',
-    price: 12.50,
+    price: 12.00,
     stock: 35,
     image: '/assets/coffee/iced_latte.jpg',
     badge: 'INFUSIÓN EN FRÍO',
@@ -65,9 +65,9 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'c-06',
-    name: 'Chemex Pour-Over de Mesa (2 Tazas)',
+    name: 'Café Pasadito',
     category: 'Métodos Filtrados',
-    price: 16.00,
+    price: 6.00,
     stock: 25,
     image: '/assets/coffee/chemex.jpg',
     badge: 'MÉTODO ARTESANAL',
@@ -76,7 +76,7 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: 'c-07',
-    name: 'Torta Húmeda de Cacao Puro VRAEM',
+    name: 'Keke de chocolate',
     category: 'Repostería',
     price: 12.00,
     stock: 18,
